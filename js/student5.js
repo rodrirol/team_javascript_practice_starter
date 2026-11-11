@@ -35,7 +35,8 @@ function student5() {
   // Create a constant called studentName that holds your name as a string.
   // Use document.getElementById("s5-name") to find the heading, and set its
   // textContent to studentName.
-
+ const studentName = "Samuel";
+  document.getElementById("s5-name").textContent = studentName;
 
   // STEP 2: Find the elements.
   // Create four constants using document.getElementById:
@@ -43,19 +44,29 @@ function student5() {
   //   message        -> "s5-message"
   //   depositButton  -> "s5-deposit"
   //   withdrawButton -> "s5-withdraw"
-
+const info = document.getElementById("s5-info");
+const message = document.getElementById("s5-message");
+const depositButton = document.getElementById("s5-deposit");
+const withdrawButton = document.getElementById("s5-withdraw");
 
   // STEP 3: Create the data.
   //   - A constant called account: an object with exactly these properties:
   //       owner    (string)  "Mia"
   //       balance  (number)  20
   //   - A constant called amount with the value 10.
-
+const account = {
+  owner: "Samuel",
+  balance: 20
+};
+const amount = 10;
 
   // STEP 4: Create a function called showAccount with no parameters.
   // Inside it, use account.owner and account.balance to set
   // info.textContent so that it looks exactly like this:
   //   Mia's piggy bank has $20.
+  function showAccount() {
+    info.textContent = `${account.owner}'s piggy bank has $${account.balance}.`;
+  }
 
 
   // STEP 5: Create a function called deposit with no parameters.
@@ -65,7 +76,11 @@ function student5() {
   //      (using amount in place of 10):
   //      You added $10.
   //   c) Call showAccount().
-
+  function deposit() {
+    account.balance += amount;
+    message.textContent = `You added $${amount}.`;
+    showAccount();
+  }
 
   // STEP 6: Create a function called withdraw with no parameters.
   // Inside it, write an if/else statement:
@@ -77,16 +92,28 @@ function student5() {
   //       c) Call showAccount().
   //   - ELSE set message.textContent to:
   //     Not enough money!
+  function withdraw() {
+    if (account.balance >= amount) {
+      account.balance -= amount;
+      message.textContent = `You took out $${amount}.`;
+      showAccount();
+    } else {
+      message.textContent = "Not enough money!";
+    }
+  }
 
 
   // STEP 7: Connect the buttons.
   // Use addEventListener so that:
   //   - a "click" on depositButton runs deposit
   //   - a "click" on withdrawButton runs withdraw
+  depositButton.addEventListener("click", deposit);
+  withdrawButton.addEventListener("click", withdraw);
 
 
   // STEP 8: Show the account when the page loads.
   // Call showAccount() here, as the last line in this function.
+  showAccount();
 
 }
 
