@@ -1,0 +1,9 @@
+/* Shared styles. Bootstrap does most of the work; students do not need to edit this file. */
+
+#s6-list {
+  overflow-wrap: anywhere;
+}
+
+#s2-box {
+  background-color: white;
+}
