@@ -44,6 +44,8 @@ function student6() {
   // Use document.getElementById("s6-name") to find the heading, and set its
   // textContent to studentName.
 
+  const studentName = "Jerry Buchanan";
+  document.getElementById("s6-name").textContent = studentName;
 
   // STEP 2: Find the elements.
   // Create six constants using document.getElementById:
@@ -54,11 +56,19 @@ function student6() {
   //   count       -> "s6-count"
   //   list        -> "s6-list"
 
+  const itemInput = document.getElementById("s6-item");
+  const addButton = document.getElementById("s6-add");
+  const clearButton = document.getElementById("s6-clear");
+  const message = document.getElementById("s6-message");
+  const count = document.getElementById("s6-count");
+  const list = document.getElementById("s6-list");
 
   // STEP 3: Create the data.
   //   - A constant called storageKey with the string "practiceShoppingList".
   //   - A variable (let) called items with an empty array.
 
+  const storageKey = "practiceShoppingList";
+  let items = [];
 
   // STEP 4: Create a function called loadItems with no parameters.
   // Inside it:
@@ -68,11 +78,20 @@ function student6() {
   //      JSON.parse(savedItems).
   // Use !== for "is not equal to".
 
+  function loadItems() {
+    const savedItems = localStorage.getItem(storageKey);
+    if (savedItems !== null) {
+      items = JSON.parse(savedItems);
+    }
+  }
 
   // STEP 5: Create a function called saveItems with no parameters.
   // Inside it, call localStorage.setItem with two arguments: storageKey and
   // JSON.stringify(items).
 
+  function saveItems() {
+    localStorage.setItem(storageKey, JSON.stringify(items));
+  }
 
   // STEP 6: Create a function called showItems with no parameters.
   // Inside it:
@@ -85,6 +104,16 @@ function student6() {
   //      Items: 3
   //      Use items.length for the number.
 
+  function showItems() {
+    list.textContent = "";
+    for (let i = 0; i < items.length; i++) {
+      const listItem = document.createElement("li");
+      listItem.className = "list-group-item";
+      listItem.textContent = items[i];
+      list.appendChild(listItem);
+    }
+    count.textContent = "Items: " + items.length;
+  }
 
   // STEP 7: Create a function called addItem with no parameters.
   // Inside it:
@@ -101,6 +130,18 @@ function student6() {
   //          Milk added.
   //        * Set itemInput.value to "".
 
+  function addItem() {
+    const item = itemInput.value.trim();
+    if (item === "") {
+      message.textContent = "Please type an item.";
+    } else {
+      items.push(item);
+      saveItems();
+      showItems();
+      message.textContent = item + " added.";
+      itemInput.value = "";
+    }
+  }
 
   // STEP 8: Create a function called clearItems with no parameters.
   // Inside it, in this order:
@@ -109,16 +150,26 @@ function student6() {
   //   c) Call showItems().
   //   d) Set message.textContent to: List cleared.
 
+  function clearItems() {
+    items = [];
+    localStorage.removeItem(storageKey);
+    showItems();
+    message.textContent = "List cleared.";
+  }
 
   // STEP 9: Connect the buttons.
   // Use addEventListener so that:
   //   - a "click" on addButton runs addItem
   //   - a "click" on clearButton runs clearItems
 
+  addButton.addEventListener("click", addItem);
+  clearButton.addEventListener("click", clearItems);
 
   // STEP 10: Start the app.
   // Call loadItems(), then showItems(), as the last lines in this function.
 
+  loadItems();
+  showItems();
 }
 
 student6();
