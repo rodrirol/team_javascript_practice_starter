@@ -32,6 +32,10 @@ function student2() {
   // Create a constant called studentName that holds your name as a string.
   // Use document.getElementById("s2-name") to find the heading, and set its
   // textContent to studentName.
+  const studentName = "Carlos Luis Acosta";
+  document.getElementById("s2-name").textContent = studentName;
+
+
 
 
   // STEP 2: Find the elements.
@@ -39,6 +43,9 @@ function student2() {
   //   colorInput -> "s2-color"
   //   button     -> "s2-button"
   //   box        -> "s2-box"
+  const colorInput = document.getElementById("s2-color");
+  const button = document.getElementById("s2-button");
+  const box = document.getElementById("s2-box");
 
 
   // STEP 3: Create a function called showColor with no parameters.
@@ -48,11 +55,17 @@ function student2() {
   //   c) Set box.textContent so that it looks exactly like this
   //      (using color in place of blue):
   //      Your favorite color is blue.
+  function showColor() {
+    const color = colorInput.value;
+    box.style.backgroundColor = color;
+    box.textContent = "Your favorite color is " + color + ".";
+  }
 
 
   // STEP 4: Connect the button.
   // Use addEventListener so that a "click" on button runs showColor.
   // Write showColor without parentheses here.
+  button.addEventListener("click", showColor);
 
 }
 
