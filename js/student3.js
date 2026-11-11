@@ -30,6 +30,9 @@ function student3() {
   // Create a constant called studentName that holds your name as a string.
   // Use document.getElementById("s3-name") to find the heading, and set its
   // textContent to studentName.
+  const studentName = "Oscar Rodriguez";
+  document.getElementById("s3-name").textContent = studentName;
+  
 
 
   // STEP 2: Find the elements.
@@ -37,11 +40,16 @@ function student3() {
   //   ageInput -> "s3-age"
   //   button   -> "s3-button"
   //   result   -> "s3-result"
+  const ageInput = document.getElementById("s3-age");
+  const button = document.getElementById("s3-button");
+  const result = document.getElementById("s3-result");
 
 
   // STEP 3: Store the fixed values.
   //   - A constant called monthsPerYear with the value 12.
   //   - A constant called daysPerYear with the value 365.
+  const monthsPerYear = 12;
+  const daysPerYear = 365;
 
 
   // STEP 4: Create a function called showAge with no parameters.
@@ -55,11 +63,18 @@ function student3() {
   //   d) Set result.textContent so that it looks exactly like this
   //      (using years, months and days in place of 14, 168 and 5110):
   //      14 years is about 168 months or 5110 days.
+  function showAge() {
+    const years = Number(ageInput.value);
+    const months = years * monthsPerYear;
+    const days = years * daysPerYear;
+    result.textContent = `${years} years is about ${months} months or ${days} days.`;
+  }
 
 
   // STEP 5: Connect the button.
   // Use addEventListener so that a "click" on button runs showAge.
   // Write showAge without parentheses here.
+  button.addEventListener("click", showAge);
 
 }
 
