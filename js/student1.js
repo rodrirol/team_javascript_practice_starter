@@ -41,18 +41,25 @@ function student1() {
   // Create a constant called studentName that holds your name as a string.
   // Use document.getElementById("s1-name") to find the heading, and set its
   // textContent to studentName.
-
+const studentName = "Sarah Beaubrun";
+document.getElementById("s1-name").textContent = studentName;
 
   // STEP 2: Find the elements.
   // Create three constants using document.getElementById:
   //   fahrenheitInput -> "s1-fahrenheit"
   //   button          -> "s1-button"
   //   result          -> "s1-result"
+const fahrenheitInput = document.getElementById("s1-fahrenheit");
+const button = document.getElementById("s1-button");
+const result = document.getElementById("s1-result");
 
 
   // STEP 3: Create a function called toCelsius with one parameter:
   // fahrenheit. It must RETURN the result of the formula above.
   // This function must only return the number. It must not change the page.
+function toCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5 / 9;
+}
 
 
   // STEP 4: Create a function called showCelsius with no parameters.
@@ -65,11 +72,16 @@ function student1() {
   //      (using fahrenheit in place of 77, and celsius.toFixed(1) in place
   //      of 25.0):
   //      77°F is 25.0°C.
-
+function showCelsius() {
+  const fahrenheit = Number(fahrenheitInput.value);
+  const celsius = toCelsius(fahrenheit);
+  result.textContent = `${fahrenheit}°F is ${celsius.toFixed(1)}°C.`;
+}
 
   // STEP 5: Connect the button.
   // Use addEventListener so that a "click" on button runs showCelsius.
   // Write showCelsius without parentheses here.
+button.addEventListener("click", showCelsius);
 
 }
 
