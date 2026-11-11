@@ -40,13 +40,17 @@ function student4() {
   // Create a constant called studentName that holds your name as a string.
   // Use document.getElementById("s4-name") to find the heading, and set its
   // textContent to studentName.
-
+const studentName = "Fabian.D";
+document.getElementById("s4-name").textContent = studentName;
 
   // STEP 2: Find the elements.
   // Create three constants using document.getElementById:
   //   scoreInput -> "s4-score"
   //   button     -> "s4-button"
   //   result     -> "s4-result"
+  const scoreInput = document.getElementById("s4-score");
+  const button = document.getElementById("s4-button");
+  const result = document.getElementById("s4-result");
 
 
   // STEP 3: Create a function called getGrade with one parameter: score.
@@ -57,6 +61,19 @@ function student4() {
   //   - ELSE IF score is greater than or equal to 60, return "D".
   //   - ELSE return "F".
   // This function must only return the letter. It must not change the page.
+  function getGrade(score) {
+    if (score >= 90) {
+      return "A";
+    } else if (score >= 80) {
+      return "B";
+    } else if (score >= 70) {
+      return "C";
+    } else if (score >= 60) {
+      return "D";
+    } else {
+      return "F";
+    }
+  }
 
 
   // STEP 4: Create a function called showGrade with no parameters.
@@ -74,11 +91,22 @@ function student4() {
   //          (using score and grade in place of 85 and B):
   //          A score of 85 is a grade B.
   // Use === for "is equal to".
+  function showGrade() {
+    const score = Number(scoreInput.value);
+
+    if (scoreInput.value === "" || score > 100) {
+      result.textContent = "You can't get over 100 😡, Lier.";
+    } else {
+      const grade = getGrade(score);
+      result.textContent = `A score of ${score} is a grade ${grade}.`;
+    }
+  }
 
 
   // STEP 5: Connect the button.
   // Use addEventListener so that a "click" on button runs showGrade.
   // Write showGrade without parentheses here.
+  button.addEventListener("click", showGrade);
 
 }
 
